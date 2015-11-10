@@ -1,8 +1,10 @@
-var express  = require("express"),  
-    app      = express(),
-    http     = require("http"),
-    server   = http.createServer(app),
-    mongoose = require('mongoose');
+var express  		= require("express"),  
+    app      		= express(),
+	bodyParser  	= require("body-parser"),
+	methodOverride 	= require("method-override");
+    http     		= require("http"),
+    server  		= http.createServer(app),
+    mongoose		= require('mongoose');
 
 app.use(bodyParser.urlencoded({ extended: false }));  
 app.use(bodyParser.json());  
@@ -22,5 +24,6 @@ mongoose.connect('mongodb://localhost/comercios', function(err, res) {
   }
   app.listen(3000, function() {
     console.log("Node server running on http://localhost:3000");
+	console.log("Connected to Database");
   });
 });
