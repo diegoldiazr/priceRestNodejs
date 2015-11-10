@@ -8,7 +8,7 @@ var express  		= require("express"),
 
 	
 //connection to db
-mongoose.connect('mongodb://localhost/comercios', function(err, res) {  
+mongoose.connect('mongodb://localhost/prices', function(err, res) {  
 	if(err) {
 		console.log('ERROR: connecting to Database. ' + err);
 		throw err;
@@ -24,14 +24,16 @@ app.use(methodOverride());
 var router = express.Router();
 
 router.get('/', function(req, res) {  
-   res.send("Hello World!");
+   res.send("Prices Rest Node Js. Rest Services");
 });
 
 app.use(router);
 
 // Import Models and controllers
-var models     = require('./models/comercio')(app, mongoose);
+var Comercios     = require('./models/comercio')(app, mongoose);
+var Juegos     = require('./models/juego')(app, mongoose);
 var ComercioCtrl = require('./controllers/comercios');
+var JuegoCtrl = require('./controllers/juegos');
 
 // API routes
 var comercios = express.Router();
@@ -46,6 +48,22 @@ comercios.route('/comercios/:id')
   .delete(ComercioCtrl.deleteComercio);
 
 app.use('/api', comercios);  
+
+
+
+var juegos = express.Router();
+
+juegos.route('/juegos')  
+  .get(JuegoCtrl.findAllJuegos)
+  .post(JuegoCtrl.addJuego);
+
+juegos.route('/juegos/:id')  
+  .get(JuegoCtrl.findById)
+  .put(JuegoCtrl.updateJuego)
+  .delete(JuegoCtrl.deleteJuego);
+
+app.use('/api', juegos);  
+
 
 
 app.listen(3000, function() {
