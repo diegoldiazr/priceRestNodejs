@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Comercio  = mongoose.model('Comercio');
 
 //GET - Return all comercios in the DB
-exports.findAllComercios = function(req, res) {  
+exports.findAll = function(req, res) {  
     Comercio.find(function(err, comercios) {
     if(err) res.send(500, err.message);
 
@@ -23,7 +23,7 @@ exports.findById = function(req, res) {
 };
 
 //POST - Insert a new Comercio in the DB
-exports.addComercio = function(req, res) {  
+exports.add = function(req, res) {  
     console.log('POST');
     console.log(req.body);
 
@@ -41,7 +41,7 @@ exports.addComercio = function(req, res) {
 };
 
 //PUT - Update a register already exists
-exports.updateComercio = function(req, res) {  
+exports.update = function(req, res) {  
     Comercio.findById(req.params.id, function(err, comercio) {
         comercio.nombre 	= req.body.nombre;
 		comercio.puntuacion = req.body.puntuacion;
@@ -55,7 +55,7 @@ exports.updateComercio = function(req, res) {
 };
 
 //DELETE - Delete a Comercio with specified ID
-exports.deleteComercio = function(req, res) {  
+exports.delete = function(req, res) {  
     Comercio.findById(req.params.id, function(err, comercio) {
         comercio.remove(function(err) {
             if(err) return res.status(500).send(err.message);

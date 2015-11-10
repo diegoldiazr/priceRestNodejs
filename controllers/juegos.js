@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Juego  = mongoose.model('Juego');
 
 //GET - Return all comercios in the DB
-exports.findAllJuegos = function(req, res) {  
+exports.findAll = function(req, res) {  
     Juego.find(function(err, comercios) {
     if(err) res.send(500, err.message);
 
@@ -23,7 +23,7 @@ exports.findById = function(req, res) {
 };
 
 //POST - Insert a new Juego in the DB
-exports.addJuego = function(req, res) {  
+exports.add = function(req, res) {  
     console.log('POST');
     console.log(req.body);
 
@@ -42,7 +42,7 @@ exports.addJuego = function(req, res) {
 };
 
 //PUT - Update a register already exists
-exports.updateJuego = function(req, res) {  
+exports.update = function(req, res) {  
     Juego.findById(req.params.id, function(err, juego) {        	
 		juego.nombre = 	req.body.nombre;
 		juego.compania=	req.body.compania;
@@ -57,7 +57,7 @@ exports.updateJuego = function(req, res) {
 };
 
 //DELETE - Delete a Juego with specified ID
-exports.deleteJuego = function(req, res) {  
+exports.delete = function(req, res) {  
     Juego.findById(req.params.id, function(err, juego) {
         juego.remove(function(err) {
             if(err) return res.status(500).send(err.message);

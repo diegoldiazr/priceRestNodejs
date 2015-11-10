@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Precio  = mongoose.model('Precio');
 
 //GET - Return all precios in the DB
-exports.findAllPrecios = function(req, res) {  
+exports.findAll = function(req, res) {  
     Precio.find(function(err, precios) {
     if(err) res.send(500, err.message);
 
@@ -23,12 +23,12 @@ exports.findById = function(req, res) {
 };
 
 //POST - Insert a new Precio in the DB
-exports.addPrecio = function(req, res) {  
+exports.add = function(req, res) {  
     console.log('POST');
     console.log(req.body);
 
     var precio = new Precio({  
-		id_Compania:req.body.id_Compania,
+		id_Comercio:req.body.id_Comercio,
 		id_Juego: 	req.body.id_Juego,
 		precio:   	req.body.precio		
 	});
@@ -41,9 +41,9 @@ exports.addPrecio = function(req, res) {
 };
 
 //PUT - Update a register already exists
-exports.updatePrecio = function(req, res) {  
+exports.update = function(req, res) {  
     Precio.findById(req.params.id, function(err, precio) {        	
-		precio.id_Compania =req.body.id_Compania;
+		precio.id_Comercio =req.body.id_Comercio;
 		precio.id_Juego=	req.body.id_Juego;
 		precio.precio=  	req.body.precio;		
 
@@ -55,7 +55,7 @@ exports.updatePrecio = function(req, res) {
 };
 
 //DELETE - Delete a Precio with specified ID
-exports.deletePrecio = function(req, res) {  
+exports.delete = function(req, res) {  
     Precio.findById(req.params.id, function(err, precio) {
         precio.remove(function(err) {
             if(err) return res.status(500).send(err.message);
