@@ -33,6 +33,7 @@ exports.addComercio = function(req, res) {
 		icono:   	req.body.icono
 	});
 
+	console.log(comercio);
     comercio.save(function(err, comercio) {
         if(err) return res.status(500).send( err.message);
     res.status(200).jsonp(comercio);
