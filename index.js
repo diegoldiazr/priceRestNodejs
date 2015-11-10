@@ -1,12 +1,14 @@
 var express  		= require("express"),  
     app      		= express(),
-	bodyParser  	= require("body-parser"),
-	methodOverride 	= require("method-override");
+	  bodyParser  	  = require("body-parser"),
+	  methodOverride 	= require("method-override");
     http     		= require("http"),
     server  		= http.createServer(app),
     mongoose		= require('mongoose');
 
-	
+//indicar a express donde estaran los archivos estaticos (public)
+app.use(express.static(__dirname + '/public'));
+
 //connection to db
 mongoose.connect('mongodb://localhost/prices', function(err, res) {  
 	if(err) {
@@ -24,7 +26,7 @@ app.use(methodOverride());
 var router = express.Router();
 
 router.get('/', function(req, res) {  
-   res.send("Prices Rest Node Js. Rest Services");
+   res.sendFile(__dirname + "/index.html");
 });
 
 app.use(router);
