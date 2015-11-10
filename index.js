@@ -6,6 +6,17 @@ var express  		= require("express"),
     server  		= http.createServer(app),
     mongoose		= require('mongoose');
 
+	
+//connection to db
+mongoose.connect('mongodb://localhost/comercios', function(err, res) {  
+	if(err) {
+		console.log('ERROR: connecting to Database. ' + err);
+		throw err;
+	}
+	console.log("Connected to Database");  
+});
+	
+//middlewares
 app.use(bodyParser.urlencoded({ extended: false }));  
 app.use(bodyParser.json());  
 app.use(methodOverride());
@@ -18,6 +29,8 @@ router.get('/', function(req, res) {
 
 app.use(router);
 
+// Import Models and controllers
+var models     = require('./models/comercio')(app, mongoose);
 var ComercioCtrl = require('./controllers/comercios');
 
 // API routes
@@ -35,13 +48,6 @@ comercios.route('/comercios/:id')
 app.use('/api', comercios);  
 
 
-
-mongoose.connect('mongodb://localhost/comercios', function(err, res) {  
-  if(err) {
-    console.log('ERROR: connecting to Database. ' + err);
-  }
-  app.listen(3000, function() {
-    console.log("Node server running on http://localhost:3000");
-	console.log("Connected to Database");
-  });
+app.listen(3000, function() {
+console.log("Node server running on http://localhost:3000");
 });
