@@ -18,6 +18,24 @@ router.get('/', function(req, res) {
 
 app.use(router);
 
+var ComercioCtrl = require('./controllers/comercios');
+
+// API routes
+var comercios = express.Router();
+
+comercios.route('/comercios')  
+  .get(ComercioCtrl.findAllComercios)
+  .post(ComercioCtrl.addComercio);
+
+comercios.route('/comercios/:id')  
+  .get(ComercioCtrl.findById)
+  .put(ComercioCtrl.updateComercio)
+  .delete(ComercioCtrl.deleteComercio);
+
+app.use('/api', comercios);  
+
+
+
 mongoose.connect('mongodb://localhost/comercios', function(err, res) {  
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
