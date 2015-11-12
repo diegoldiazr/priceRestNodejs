@@ -1,0 +1,21 @@
+[{
+"_id": "1",
+"nombre": "Hipercor",
+"puntuacion": 4,
+"icono": "http://static103.tiendeo.com/upload_negocio/negocio_54/logo2.png",
+"__v": 0
+},
+{
+"_id": "2",
+"nombre": "Amazon",
+"puntuacion": 5,
+"icono": "http://media.corporate-ir.net/media_files/IROL/97/97664/images/amazon_logo_RGB.jpg",
+"__v": 0
+},
+{
+"_id": "3",
+"nombre": "Alcampo",
+"puntuacion": 3,
+"icono": "http://www.alcampo.es/Altawifi/imagesPortal/LOGO_SOLO.png",
+"__v": 0
+}]

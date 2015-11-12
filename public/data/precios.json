@@ -1,0 +1,21 @@
+[{
+ "_id": "1",
+ "id_Comercio": "1",
+ "id_Juego": "1",
+ "precio": 29.95,
+ "__v": 0
+},
+{
+ "_id": "2",
+ "id_Comercio": "2",
+ "id_Juego": "1",
+ "precio": 19.95,
+ "__v": 0
+},
+{
+ "_id": "3",
+ "id_Comercio": "2",
+ "id_Juego": "2",
+ "precio": 0.00,
+ "__v": 0
+}]

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Servicio REST </title>
+	<link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+<body ng-controller="aCargaCtrl">
+	<div class="container">
+		<h3>Servicio REST con MEAN</h3>
+		<h2>version 0.0.1-snapshot</h2>
+
+		<fieldset>
+			<legend>Precios de Juegos por comercio</legend>
+			<label>Comercios: </label>
+			<select ng-model="comercio" ng-options="d._id as d.nombre for d in comercios"></select>
+			<label>Juegos: </label>
+			<select ng-model="juego">
+				<option ng-repeat="j in juegos" value="{{j._id}}">{{j.nombre}}</option>
+			</select>
+			<label>Precios: </label>
+			
+			<ol ng-model="precio">
+				<li ng-repeat="p in precios | filter:{id_Comercio:comercio}" value="{{p._id}}">{{p.precio}}</li>
+			</ol>			
+			
+			<select ng-model="precio">
+				<option ng-repeat="p in precios | filter:{id_Comercio:comercio}" value="{{p._id}}">{{p.precio}}</option>
+			</select>
+		</fieldset>
+		<fieldset>
+			<legend>Precios de Juegos por juego</legend>			
+			<label>Juegos: </label>
+			<select ng-model="juego">
+				<option ng-repeat="j in juegos" value="{{j._id}}">{{j.nombre}}</option>
+			</select>
+			<label>Precios: </label>
+			
+			<ol ng-model="precio">
+				<li ng-repeat="p in precios | filter:{id_Juego:juego}" value="{{p._id}}">{{p.precio}}</li>
+			</ol>							
+		</fieldset>
+		<p>Comercios {{comercios}}</p>
+		<p>Juegos {{juegos}}</p>		
+		<p>Precios {{precios}}</p>
+	</div>
+	<script type="text/javascript" src="/js/angular.js"></script>
+	<script type="text/javascript" src="/js/aCargaCtrl.js"></script>
+</body>
+</html>
